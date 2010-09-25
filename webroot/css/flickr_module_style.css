@@ -1,0 +1,16 @@
+#flickr_gallery{
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
+}
+
+.flickr_image{
+    padding-bottom: 15px;
+    padding-right: 5px;
+    float: left;
+}
+
+.clear{
+    clear: both;
+}

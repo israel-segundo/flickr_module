@@ -1,0 +1,37 @@
+Flickr Module
+-----------------------------------------------------------------------------------------------------
+A plugin for Croogo CMS for displaying random flickr PUBLIC photos of a given user in a block.
+
+
+REQUIREMENTS
+-----------------------------------------------------------------------------------------------------
+    - Requires Croogo 1.3.2 or above.
+    - A Flickr User ID. The flickr account that owns the photos.
+    - IMPORTANT. A Flickr API Key. It defaults to a key for this Croogo plugin. If you are going
+      to ship your app commercially, I ask you to change it. This default key is for non-commercial
+      apps only.  You can get a flickr API key from http://www.flickr.com/services/api/
+
+    Hint: If you don't know how to get the flickr user id, you can use the following
+    service: http://idgettr.com/
+
+
+HOW TO USE
+-----------------------------------------------------------------------------------------------------
+    1. Log in to admin panel
+    2. Go to Extensions > Plugins page
+    3. Upload the zip file (available here)
+    4. Click on tick/cross icon of 'flickr_module' for activating or deactivating the plugin
+    5. Go to menu Extensions > Flickr Module > Configure and put your settings.
+    6. Enjoy!
+
+
+Assumptions
+-----------------------------------------------------------------------------------------------------
+    - You are using jQuery.
+
+CREDITS
+-----------------------------------------------------------------------------------------------------
+This plugin uses third-party software for form validation functionality. Jörn Zaefferer's jquery plugin
+validation http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+
+This plugin uses Cuba Gallery (36587311@N08) as default flickr account. http://www.flickr.com/people/cubagallery/
