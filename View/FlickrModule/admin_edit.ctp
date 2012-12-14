@@ -26,6 +26,13 @@
             	'type'    => 'text'
             ));
 
+            echo $this->Form->input('FlickrModule.user_type', array(
+                'options' => array(
+                    'group' => 'Group',
+                    'user'=> 'User'),
+                'default' => $settings['user_type']
+            ));
+
             echo $this->Form->input('FlickrModule.number_images', array(
             	'label' => 'Number of Images',
             	'class' => 'required number',

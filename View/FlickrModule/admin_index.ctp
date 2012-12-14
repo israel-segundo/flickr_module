@@ -16,13 +16,14 @@
     <table cellspacing="0" cellpadding="0">
         <?php
             echo $this->Html->tableHeaders(array(
-                'Flickr Key', 'User ID', 'Number of Images','Width','Height'
+                'Flickr Key', 'Flcikr ID', 'Type', 'Number of Images','Width','Height'
             ));
 
             echo $this->Html->tableCells(array(
                 array(
                     $settings["flickr_key"],
                     $settings['flickr_user_id'],
+                    $settings['user_type'],
                     $settings['number_images'],
                     $settings['width'],
                     $settings['height']
