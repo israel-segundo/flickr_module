@@ -1,10 +1,10 @@
 Flickr Module
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 A plugin for Croogo CMS for displaying random flickr PUBLIC photos of a given user in a block.
 
 
 REQUIREMENTS
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
     - Testing with CakePHP 2.2.3 & Croogo 1.4.2
     - A Flickr User ID. The flickr account that owns the photos.
     - IMPORTANT. A Flickr API Key. It defaults to a key for this Croogo plugin. If you are going
@@ -16,7 +16,7 @@ REQUIREMENTS
 
 
 HOW TO USE
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
     1. Log in to admin panel
     2. Go to Extensions > Plugins page
     3. Upload the zip file (available here)
@@ -26,11 +26,11 @@ HOW TO USE
 
 
 Assumptions
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
     - You are using jQuery.
 
 CREDITS
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 This plugin is based on the version that was created by Israel Segundo <israel.segundo@gmail.com>
 https://github.com/chroposnos/flickr_module
 
