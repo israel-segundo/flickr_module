@@ -1,0 +1,15 @@
+{
+	"name": "Flickr Module",
+	"description": "Plugin for displaying random flickr photos in a block.",
+
+	"author": "Israel Segundo",
+	"authorEmail": "israel.segundo@gmail.com",
+	"authorUrl": "google.com",
+
+	"dependencies": {
+		"plugins": [
+			"acl",
+			"extensions"
+			]
+		}
+}

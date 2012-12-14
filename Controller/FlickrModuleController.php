@@ -1,8 +1,47 @@
 <?php
-
+/**
+ * Tweet Controller
+ *
+ * PHP version 5
+ *
+ * @category Controller
+ * @package  Croogo
+ * @version  1.4
+ * @author   
+ * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @link     http://www.croogo.org
+ */
 class FlickrModuleController extends FlickrModuleAppController {
 
+    /**
+     * Plugin name
+     *
+     * @var string
+     */
+    var $pluginName = 'FlickrModule';
+
+    /**
+     * Controller name
+     *
+     * @var string
+     * @access public
+     */
     public $name = 'FlickrModule';
+
+    /**
+     * Components used by the Controller
+     *
+     * @var array
+     * @access public
+     */ 
+    public $components = array('Security', 'Session', 'FlickrModule.FlickrModule');
+
+    /**
+     * Models used by the Controller
+     *
+     * @var array
+     * @access public
+     */
     public $uses = array('Setting');
 
     public function admin_index() {
@@ -31,8 +70,19 @@ class FlickrModuleController extends FlickrModuleAppController {
         $this->set( 'flickr_module_settings', $settings);
 
         $this->Session->setFlash( $message );
-        $this->redirect( array( 'plugin' => 'flickr_module', 'controller' => 'flickr_module', 'action' => 'admin_index') );
+        $this->redirect(array('action'=>'index'));
         exit();
     }
+
+    /**
+     * Edit tweet
+     *
+     * @param integer $id
+     */
+    function admin_edit($id = null) {
+        $this->set('title_for_layout', __('Flickr Module Edit Settings', true));
+        $this->set( 'flickr_module_settings', $this->getSettings());
+    }
+
 }
 ?>

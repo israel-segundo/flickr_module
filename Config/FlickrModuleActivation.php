@@ -1,6 +1,20 @@
 <?php
+/**
+ * Tweet Activation
+ *
+ * Activation class for Tweet plugin.
+ * This is optional, and is required only if you want to perform tasks when your plugin is activated/deactivated.
+ *
+ * @package  Croogo
+ * @version  1.4
+ * @author   
+ * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @link     http://www.croogo.org
+ */
 
 class FlickrModuleActivation {
+
+    var $uses = array('Session');
 
     public function beforeActivation(&$controller) {
         return true;
@@ -12,8 +26,29 @@ class FlickrModuleActivation {
         $controller->Croogo->addAco('FlickrModule/admin_index');
         $controller->Croogo->addAco('FlickrModule/admin_store_settings');
         $controller->Croogo->addAco('FlickrModule/index', array('registered', 'public'));
+
+        $controller->Croogo->addAco('flickrmodule');
+        $controller->Croogo->addAco('flickrmodule/admin_index');
+        $controller->Croogo->addAco('flickrmodule/admin_store_settings');
+        $controller->Croogo->addAco('flickrmodule/index', array('registered', 'public'));
+
         $this->createBlock($controller);
         $this->resetSettings($controller);
+        
+        // Main menu: add an Route link
+        $mainMenu = $controller->Link->Menu->findByAlias('main');
+        $controller->Link->Behaviors->attach('Tree', array(
+            'scope' => array(
+                'Link.menu_id' => $mainMenu['Menu']['id'],
+            ),
+        ));
+        
+        $controller->Link->save(array(
+            'menu_id' => $mainMenu['Menu']['id'],
+            'title' => 'Route',
+            'link' => 'plugin:flickrmodule/controller:flickrmodule/action:index',
+            'status' => 1,
+        ));
     }
 
     public function beforeDeactivation(&$controller) {
@@ -23,6 +58,18 @@ class FlickrModuleActivation {
     public function onDeactivation(&$controller) {
         $controller->Croogo->removeAco('FlickrModule');
         $this->removeBlock($controller);
+
+        // Main menu: delete Tweet link
+        $link = $controller->Link->find('first', array(
+            'conditions' => array(
+                'Menu.alias' => 'main',
+                'Link.link' => 'plugin:flickrmodule/controller:flickrmodule/action:index',
+            ),
+        ));
+        
+        if (isset($link['Link']['id'])) {
+            $controller->Link->delete($link['Link']['id']);
+        }
     }
 
     private function createBlock(&$controller){
@@ -35,7 +82,7 @@ class FlickrModuleActivation {
             'region_id'        => 4, // Right
             'title'            => 'Flickr',
             'alias'            => 'flick_module_plugin',
-            'body'             => '[element:flickr_gallery plugin="flickr_module"]',
+            'body'             => '[element:flickr plugin="FlickrModule"]',
             'show_title'       => 1,
             'status'           => 1
         ));
@@ -45,7 +92,7 @@ class FlickrModuleActivation {
     private function removeBlock(&$controller){
 
         $controller->loadModel('Block');
-        $block = $controller->Block->find('first', array('conditions'=>array('Block.alias'=>'flick_module_plugin')));
+        $block = $controller->Block->find('first', array('conditions'=>array('Block.alias'=>'FlickrModulePlugin')));
 
         if( $block ){
             $controller->Block->delete($block['Block']['id']);
