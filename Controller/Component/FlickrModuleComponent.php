@@ -1,15 +1,7 @@
 <?php
 /**
- * CTweet Component
+ * FlickrModule Component
  *
- * PHP version 5
- *
- * @category Component
- * @package  Croogo
- * @version  1.4
- * @author   Damian Grant <codebogan@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.croogo.org
  */
 class FlickrModuleComponent extends Object {
 
@@ -22,17 +14,8 @@ class FlickrModuleComponent extends Object {
     function initialize(&$controller) {
         // saving the controller reference for later use
         $this->controller =& $controller;
-        
-        //pr($this->controller);
-        //die();
         $this->FlickrModule = ClassRegistry::init('FlickrModule.FlickrModule');
         
-        //custom node settings 
-        /*
-        if ($this->controller->name == 'Nodes') {
-            $this->controller->Security->disabledFields = array('tweet_alias', 'tweet_status');
-        }
-        */
     }
     
     public function startup(&$controller) {
@@ -54,6 +37,7 @@ class FlickrModuleComponent extends Object {
             $controller->FlickrGallery->getRandomPicturesofUser(
                     $settings['flickr_key'],
                     $settings['flickr_user_id'],
+                    $settings['user_type'],
                     $settings['number_images']
             );
 

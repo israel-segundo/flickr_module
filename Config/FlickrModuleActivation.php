@@ -1,17 +1,8 @@
 <?php
 /**
- * Tweet Activation
+ * Flickr Module
  *
- * Activation class for Tweet plugin.
- * This is optional, and is required only if you want to perform tasks when your plugin is activated/deactivated.
- *
- * @package  Croogo
- * @version  1.4
- * @author   
- * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.croogo.org
  */
-
 class FlickrModuleActivation {
 
     var $uses = array('Session');
@@ -103,20 +94,28 @@ class FlickrModuleActivation {
     private function resetSettings(&$controller){
 
         $options = array(
-            'flickr_key'        => 'c759a4a174da95e36d4e0ca6717a7f6a',
-            'flickr_user_id'    => '36587311@N08',
+            'flickr_key'        => 'f90a3b99d0ae13d35fcc1c31ef16f3b4',
+            'flickr_user_id'    => '36133189@N00',
+            'user_type'         => 'group',
             'number_images'     => 4,
             'height'            => 100,
             'width'             => 130
 
         );
 
-        $setting = $controller->Setting->find('first',
-                                              array('conditions'=>array('Setting.key'=>'FlickrModule.options')));
+        $setting = $controller->Setting->find('first', array(
+            'conditions'=>array(
+                'Setting.key'=>'FlickrModule.options'
+                )
+            )
+        );
 
         $setting['Setting']['key']   = 'FlickrModule.options';
-        $setting['Setting']['value'] = $controller->Node->encodeData($options,
-                                                                        array('trim'=>false,'json'=>true));
+        $setting['Setting']['value'] = $controller->Node->encodeData($options, array(
+            'trim'=>false,
+            'json'=>true
+            )
+        );
 
         $controller->Setting->save($setting);
 

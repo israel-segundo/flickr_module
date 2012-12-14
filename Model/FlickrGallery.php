@@ -1,15 +1,7 @@
 <?php
 /**
- * Tweet
+ * Flickr Module
  *
- * PHP version 5
- *
- * @category Model
- * @package  Croogo
- * @version  1.4
- * @author   Damian Grant <codebogan@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.croogo.org
  */
 class FlickrGallery extends FlickrModuleAppModel{
 
@@ -27,11 +19,11 @@ class FlickrGallery extends FlickrModuleAppModel{
         return $ret;
     }
 
-    public function getRandomPicturesofUser($api_key=null, $user_id=null, $number_images=null){
+    public function getRandomPicturesofUser($api_key=null, $user_id=null, $user_type=null, $number_images=null){
 
-        if( $api_key==null || $user_id == null || $number_images==null){return false;}
+        if( $api_key == null || $user_id == null || $number_images==null || $user_type==null){return false;}
 
-        $gallery = $this->callFlickrREST($api_key, $user_id);
+        $gallery = $this->callFlickrREST($api_key, $user_id, $user_type);
 
         if( $gallery == false ){
             return false;
@@ -64,17 +56,22 @@ class FlickrGallery extends FlickrModuleAppModel{
         return $photos;
     }
 
-    private function callFlickrREST( $api_key=null, $user_id=null ){
+    private function callFlickrREST( $api_key=null, $user_id=null, $user_type=null){
 
-        if( $api_key==null || $user_id == null){return false;}
+        if( $api_key==null || $user_id == null || $user_type == null ){return false;}
         
         #
         # build the API URL to call
         #
+        if($user_type == 'user'){
+            $method = 'flickr.people.getPublicPhotos';
+        } elseif($user_type == 'group'){
+            $method = 'flickr.groups.pools.getPhotos';
+        }
 
         $params = array(
                 'api_key'	=> $api_key,
-                'method'	=> 'flickr.people.getPublicPhotos',
+                'method'	=> $method,
                 'user_id'	=> $user_id
         );
 

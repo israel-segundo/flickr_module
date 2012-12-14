@@ -1,15 +1,7 @@
 <?php
 /**
- * Tweet Controller
+ * Flickr Module
  *
- * PHP version 5
- *
- * @category Controller
- * @package  Croogo
- * @version  1.4
- * @author   
- * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.croogo.org
  */
 class FlickrModuleController extends FlickrModuleAppController {
 
@@ -55,7 +47,7 @@ class FlickrModuleController extends FlickrModuleAppController {
 
     public function admin_store_settings(){
 
-        $fields = array('flickr_key', 'flickr_user_id', 'height', 'width');
+        $fields = array('flickr_key', 'flickr_user_id', 'user_type', 'height', 'width');
 
         foreach( $fields as $field){
             if( !isset( $this->data['FlickrModule'][$field]) || $this->data['FlickrModule'][$field]=='' ){
